@@ -71,7 +71,7 @@ ________________________________________
 Candidates can choose one of the two exercises ***or*** complete both but should be prepared to talk about both assignments in the follow-up assessment.
 
 Please submit your code and deliverables as a zipped folder or GitHub repository link (**preferred**), including your `README.md`.
-Please [email your folder or repository link](mailto:jsilverman@cohenco.com%3Bmduleba@cohenco.com?cc=cgamble@cohenco.com%3Bjgraham@cohenco.com%3Bkmalloy@cohenco.com&Subject=DIS%20Technical%20Assessment).  Please complete as soon as possible so we can proceed with your interview process ideally within a week (if you need more time please reach out and let us know).
+Please [email your folder or repository link](mailto:jsilverman@cohenco.com%3Bmduleba@cohenco.com?cc=cgamble@cohenco.com%3Bayarnot@cohenco.com%3Bjgraham@cohenco.com%3Bkmalloy@cohenco.com&Subject=DIS%20Technical%20Assessment).  Please complete as soon as possible so we can proceed with your interview process ideally within a week (if you need more time please reach out and let us know).
 
 You do ***not*** need to implement a user interface, API endpoint, or Docker container — a simple script is perfect.
 
