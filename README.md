@@ -41,7 +41,7 @@ date,customer_id,amount,category
 
 ________________________________________
 ## Option 2: 
-## API Integration (Structured)
+## API Integration
 
 ### Task:
 Write a Python script that:
