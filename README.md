@@ -2,7 +2,7 @@
 # DIS Technical Assessment
 Thank you for interviewing with us!
 As part of our process, we’d like you to complete a short technical assessment.
-We’re giving you two assignment options below. You may choose to complete either one (whichever best showcases your skills) or both.  
+We’re giving you two assignment options below. You may choose to complete **either one (whichever best showcases your skills) or both**.  
  We expect this assignment to take about 2–3 hours, but please don’t feel pressure to over-engineer — we’re more interested in seeing your approach, clarity, and coding style than a perfect production-ready system. Do not be overly concerned with style and design of the application. Just make sure it clearly displays the functionality it is supporting and meets the requirements outlined below. Likewise, if you run into challenges either completing the application or with particular aspects, it’s ok. We would still like to see what you accomplished and talk through things with you.
 ________________________________________
 ## Option 1: 
