@@ -1,5 +1,5 @@
 # Data Intelligence Services (DIS) Technical Assessment
-Please don’t feel pressure to over-engineer — we’re more interested in seeing your approach, clarity, and working style than a perfect production-ready system. 
+
 
 ## Option 1:  Data Processing & Transformation
 
@@ -33,10 +33,3 @@ date,customer_id,amount,category
 •	top_customers.json
 •	README.md
 ```
-
-## CtrlV->Claude.ai
-[https://claude.ai/share/7d31cd4a-bcfc-4842-b4fb-5339bb938a9c](https://claude.ai/share/7d31cd4a-bcfc-4842-b4fb-5339bb938a9c)  
-
-
-
-<img width="1115" height="628" alt="image" src="https://github.com/user-attachments/assets/57427b07-4003-448b-8f1c-793be0ed799a" />
