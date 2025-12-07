@@ -28,8 +28,8 @@ date,customer_id,amount,category
 - Include a short **README** explaining how to run it.
 
 ### Deliverables:
-```
-•	main.py
-•	top_customers.json
-•	README.md
-```
+_• transactions.csv_  
+•	main.py  
+•	top_customers.json  
+•	README.md  
+
