@@ -1,4 +1,4 @@
-#   Flow Summary
+#   Flow 
 #   
 #   Read CSV → loop through transactions
 #   Sum amounts per customer
@@ -11,26 +11,27 @@
 
 
 
-#   Loads the tools we need
-#   
-#   csv - reads CSV files
-#   json - writes JSON files
-#   defaultdict - creates a dictionary that auto-initializes missing keys to 0.0
-#   itemgetter - helps sort dictionaries by a specific key
+#   Load tools
+#   csv  reads CSV files
+#   json  writes JSON files
+#   defaultdict  creates a dictionary that auto-initializes missing keys to 0.0
+#   itemgetter  helps sort dictionaries by a specific key
 import csv
 import json
 from collections import defaultdict
 from operator import itemgetter
 
 
-#   analyze_transactions() Defines main function with default file names
+#   analyze_transactions() 
+#   Definition for main function 
 #   Analyze customer transactions and identify top 5 customers by total spend.
-#   Args: input_file: transactions.csv output_file: top_customers.json
+#   Argumnets: 
+#     input_file: transactions.csv
+#     output_file: top_customers.json
 #   Dictionary to store total spend per customer
 #   Creates an empty dictionary to track each customer's total. 
 #   defaultdict(float) means if we access a customer_id that doesn't exist yet, 
 #   it starts at  0.0
-
 def analyze_transactions(input_file='transactions.csv', output_file='top_customers.json'): 
     customer_totals = defaultdict(float) 
     
@@ -41,10 +42,14 @@ def analyze_transactions(input_file='transactions.csv', output_file='top_custome
         with open(input_file, 'r') as csvfile: 
             reader = csv.DictReader(csvfile) 
             
-            for row in reader: # Loop through each transaction
-                customer_id = int(row['customer_id']) # Extract customer_id and amount
+
+            # Loop through each transaction
+            # Extract customer_id and amount
+            # Add the amount to that customer's running total
+            for row in reader: 
+                customer_id = int(row['customer_id']) 
                 amount = float(row['amount']) 
-                customer_totals[customer_id] += amount # Add the amount to that customer's running total
+                customer_totals[customer_id] += amount 
         
         
         #   Convert to list of dictionaries and sort by total spend (descending)
