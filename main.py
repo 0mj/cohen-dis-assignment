@@ -3,30 +3,24 @@ import json
 
 def analyze_transactions(input_file='transactions.csv', output_file='top_customers.json'):
    
-    # Create an empty dictionary to store customer totals
-    customer_totals = {}
+    customer_totals = {} #  empty dictionary(key/val) for storing customer totals
     
     try:
-        # Open and read the CSV file
-        csvfile = open(input_file, 'r')
+        csvfile = open(input_file, 'r') # Open/read csv
         reader = csv.DictReader(csvfile)
         
-        # Loop through each transaction row
-        for row in reader:
+        for row in reader: # Loop through each transaction row
             customer_id = int(row['customer_id'])
             amount = float(row['amount'])
             
-            # If customer doesn't exist in dictionary, add them with $0
-            if customer_id not in customer_totals:
+            if customer_id not in customer_totals: # If id doesn't exist add with $0
                 customer_totals[customer_id] = 0.0
             
-            # Add this transaction amount to customer's total
-            customer_totals[customer_id] = customer_totals[customer_id] + amount
+            customer_totals[customer_id] = customer_totals[customer_id] + amount # Add transaction amount to customer's total
         
         csvfile.close()
         
-        # Convert dictionary to a list of dictionaries
-        customer_list = []
+        customer_list = [] # Convert dictionary to a LIST(ordered collection)
         for customer_id in customer_totals:
             total = customer_totals[customer_id]
             total_rounded = round(total, 2)
@@ -37,26 +31,22 @@ def analyze_transactions(input_file='transactions.csv', output_file='top_custome
             }
             customer_list.append(customer_dict)
         
-        # Sort the list by total_spend (highest to lowest)
-        # We'll use a simple bubble-sort approach that's easier to understand
-        for i in range(len(customer_list)):
-            for j in range(i + 1, len(customer_list)):
+        for i in range(len(customer_list)): # Sort total_spend (highest to lowest)
+            for j in range(i + 1, len(customer_list)): # bubble-sort
                 if customer_list[i]['total_spend'] < customer_list[j]['total_spend']:
                     # Swap positions if current is less than next
                     temp = customer_list[i]
                     customer_list[i] = customer_list[j]
                     customer_list[j] = temp
         
-        # Get only the top 5 customers
-        top_customers = []
+        top_customers = [] # Get only the top 5 customers
         count = 0
         for customer in customer_list:
             if count < 5:
                 top_customers.append(customer)
                 count = count + 1
         
-        # Write results to JSON file
-        jsonfile = open(output_file, 'w')
+        jsonfile = open(output_file, 'w') # Write results to JSON file
         json.dump(top_customers, jsonfile, indent=2)
         jsonfile.close()
         
@@ -82,6 +72,6 @@ def analyze_transactions(input_file='transactions.csv', output_file='top_custome
         print("Error processing file: " + str(e))
         return None
 
-# Run the script
-if __name__ == '__main__':
+
+if __name__ == '__main__': # script run directly (not imported)? If yes, calls the function to start the analysis
     analyze_transactions()
