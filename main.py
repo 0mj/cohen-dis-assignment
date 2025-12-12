@@ -31,12 +31,13 @@ def analyze_transactions(input_file='transactions.csv', output_file='top_custome
         customer_list.append(customer_dict)
     
     for i in range(len(customer_list)): # Sort total_spend (highest to lowest)
-        for j in range(i + 1, len(customer_list)): # bubble-sort
-            if customer_list[i]['total_spend'] < customer_list[j]['total_spend']:
+        # for j in range(i + 1, len(customer_list)): # bubble-sort
+        #     if customer_list[i]['total_spend'] < customer_list[j]['total_spend']:
                 
-                temp = customer_list[i] # Swap positions if current is less than next
-                customer_list[i] = customer_list[j]
-                customer_list[j] = temp
+        #         temp = customer_list[i] # Swap positions if current is less than next
+        #         customer_list[i] = customer_list[j]
+        #         customer_list[j] = temp
+        print(i)
     
     
     
