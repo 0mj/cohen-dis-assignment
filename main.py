@@ -3,24 +3,19 @@ import json
 
 def analyze_transactions(input_file='transactions.csv', output_file='top_customers.json'):
    
-    # Create an empty dictionary to store customer totals
-    customer_totals = {}
+    customer_totals = {} # Create an empty dictionary to store customer totals
     
-    # Open and read the CSV file
-    csvfile = open(input_file, 'r')
+    csvfile = open(input_file, 'r') # Open and read the CSV file
     reader = csv.DictReader(csvfile)
     
-    # Loop through each transaction row
-    for row in reader:
+    for row in reader: # Loop through each transaction row
         customer_id = int(row['customer_id'])
         amount = float(row['amount'])
         
-        # If customer doesn't exist in dictionary, add them with $0
-        if customer_id not in customer_totals:
+        if customer_id not in customer_totals: # If customer doesn't exist in dictionary, add them with $0
             customer_totals[customer_id] = 0.0
         
-        # Add this transaction amount to customer's total
-        customer_totals[customer_id] = customer_totals[customer_id] + amount
+        customer_totals[customer_id] = customer_totals[customer_id] + amount # Add this transaction amount to customer's total
     
     csvfile.close()
     print(customer_totals)
