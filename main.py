@@ -2,23 +2,16 @@ import csv
 import json
 
 def analyze_transactions(input_file='transactions.csv', output_file='top_customers.json'):
-    """
-    Analyze customer transactions and identify top 5 customers by total spend.
-    
-    Args:
-        input_file: Path to the input CSV file
-        output_file: Path to the output JSON file
-    """
-    
-    # Step 1: Create an empty dictionary to store customer totals
+   
+    # Create an empty dictionary to store customer totals
     customer_totals = {}
     
     try:
-        # Step 2: Open and read the CSV file
+        # Open and read the CSV file
         csvfile = open(input_file, 'r')
         reader = csv.DictReader(csvfile)
         
-        # Step 3: Loop through each transaction row
+        # Loop through each transaction row
         for row in reader:
             customer_id = int(row['customer_id'])
             amount = float(row['amount'])
@@ -32,7 +25,7 @@ def analyze_transactions(input_file='transactions.csv', output_file='top_custome
         
         csvfile.close()
         
-        # Step 4: Convert dictionary to a list of dictionaries
+        # Convert dictionary to a list of dictionaries
         customer_list = []
         for customer_id in customer_totals:
             total = customer_totals[customer_id]
@@ -44,7 +37,7 @@ def analyze_transactions(input_file='transactions.csv', output_file='top_custome
             }
             customer_list.append(customer_dict)
         
-        # Step 5: Sort the list by total_spend (highest to lowest)
+        # Sort the list by total_spend (highest to lowest)
         # We'll use a simple bubble-sort approach that's easier to understand
         for i in range(len(customer_list)):
             for j in range(i + 1, len(customer_list)):
@@ -54,7 +47,7 @@ def analyze_transactions(input_file='transactions.csv', output_file='top_custome
                     customer_list[i] = customer_list[j]
                     customer_list[j] = temp
         
-        # Step 6: Get only the top 5 customers
+        # Get only the top 5 customers
         top_customers = []
         count = 0
         for customer in customer_list:
@@ -62,12 +55,12 @@ def analyze_transactions(input_file='transactions.csv', output_file='top_custome
                 top_customers.append(customer)
                 count = count + 1
         
-        # Step 7: Write results to JSON file
+        # Write results to JSON file
         jsonfile = open(output_file, 'w')
         json.dump(top_customers, jsonfile, indent=2)
         jsonfile.close()
         
-        # Step 8: Print results to console
+        # Print results to console
         print("Analysis complete! Results written to " + output_file)
         print("")
         print("Top 5 Customers:")
