@@ -1,53 +1,94 @@
 import csv
 import json
-from collections import defaultdict
-from operator import itemgetter
 
 def analyze_transactions(input_file='transactions.csv', output_file='top_customers.json'):
+    """
+    Analyze customer transactions and identify top 5 customers by total spend.
     
-    customer_totals = defaultdict(float)
+    Args:
+        input_file: Path to the input CSV file
+        output_file: Path to the output JSON file
+    """
+    
+    # Step 1: Create an empty dictionary to store customer totals
+    customer_totals = {}
     
     try:
-    
-        with open(input_file, 'r') as csvfile:
-            reader = csv.DictReader(csvfile)
+        # Step 2: Open and read the CSV file
+        csvfile = open(input_file, 'r')
+        reader = csv.DictReader(csvfile)
+        
+        # Step 3: Loop through each transaction row
+        for row in reader:
+            customer_id = int(row['customer_id'])
+            amount = float(row['amount'])
             
-            for row in reader:
-                customer_id = int(row['customer_id'])
-                amount = float(row['amount'])
-                customer_totals[customer_id] += amount
+            # If customer doesn't exist in dictionary, add them with $0
+            if customer_id not in customer_totals:
+                customer_totals[customer_id] = 0.0
+            
+            # Add this transaction amount to customer's total
+            customer_totals[customer_id] = customer_totals[customer_id] + amount
         
-    
-        customer_list = [
-            {'customer_id': customer_id, 'total_spend': round(total, 2)}
-            for customer_id, total in customer_totals.items()
-        ]
+        csvfile.close()
         
-    
-        top_customers = sorted(
-            customer_list, 
-            key=itemgetter('total_spend'), 
-            reverse=True
-        )[:5]
+        # Step 4: Convert dictionary to a list of dictionaries
+        customer_list = []
+        for customer_id in customer_totals:
+            total = customer_totals[customer_id]
+            total_rounded = round(total, 2)
+            
+            customer_dict = {
+                'customer_id': customer_id,
+                'total_spend': total_rounded
+            }
+            customer_list.append(customer_dict)
         
-    
-        with open(output_file, 'w') as jsonfile:
-            json.dump(top_customers, jsonfile, indent=2)
+        # Step 5: Sort the list by total_spend (highest to lowest)
+        # We'll use a simple bubble-sort approach that's easier to understand
+        for i in range(len(customer_list)):
+            for j in range(i + 1, len(customer_list)):
+                if customer_list[i]['total_spend'] < customer_list[j]['total_spend']:
+                    # Swap positions if current is less than next
+                    temp = customer_list[i]
+                    customer_list[i] = customer_list[j]
+                    customer_list[j] = temp
         
-        print(f"Analysis complete! Results written to {output_file}")
-        print(f"\nTop 5 Customers:")
-        print("-" * 40)
-        for i, customer in enumerate(top_customers, 1):
-            print(f"{i}. Customer {customer['customer_id']}: ${customer['total_spend']:.2f}")
+        # Step 6: Get only the top 5 customers
+        top_customers = []
+        count = 0
+        for customer in customer_list:
+            if count < 5:
+                top_customers.append(customer)
+                count = count + 1
+        
+        # Step 7: Write results to JSON file
+        jsonfile = open(output_file, 'w')
+        json.dump(top_customers, jsonfile, indent=2)
+        jsonfile.close()
+        
+        # Step 8: Print results to console
+        print("Analysis complete! Results written to " + output_file)
+        print("")
+        print("Top 5 Customers:")
+        print("----------------------------------------")
+        
+        position = 1
+        for customer in top_customers:
+            cust_id = customer['customer_id']
+            spend = customer['total_spend']
+            print(str(position) + ". Customer " + str(cust_id) + ": $" + str(spend))
+            position = position + 1
         
         return top_customers
         
     except FileNotFoundError:
-        print(f"Error: {input_file} not found.")
+        print("Error: " + input_file + " not found.")
         return None
     except Exception as e:
-        print(f"Error processing file: {str(e)}")
+        print("Error processing file: " + str(e))
         return None
 
+# Run the script
 if __name__ == '__main__':
     analyze_transactions()
