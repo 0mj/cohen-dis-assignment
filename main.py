@@ -38,15 +38,7 @@ def analyze_transactions(input_file='transactions.csv', output_file='top_custome
                 customer_list[i] = customer_list[j]
                 customer_list[j] = temp
     
-    top_customers = [] # Get only the top 5 customers
-    count = 0
-    for customer in customer_list:
-        if count < 5:
-            top_customers.append(customer)
-            count = count + 1
     
-    jsonfile = open(output_file, 'w') # Write results to JSON file
-    json.dump(top_customers, jsonfile, indent=2)
-    jsonfile.close()
+    
         
 analyze_transactions()
